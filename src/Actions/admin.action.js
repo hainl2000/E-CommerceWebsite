@@ -46,3 +46,14 @@ export const createProduct = (product) => {
     axios.post('/admin/product/create', product, { withCredentials: true })
     .then(response => console.log(response))
 }
+
+export const switchRoom = (room) => {
+    return {
+        type: ACTIONS.ADMIN_SELECT_ROOM,
+        currentRoom: room
+    }
+}
+
+export const selectRoom = (id) => {
+    socket.emit('loadMsg', id)
+}

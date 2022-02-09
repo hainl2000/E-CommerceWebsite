@@ -1,4 +1,4 @@
-import { constance as ACTIONS } from "../constance";
+import { constances as ACTIONS } from "../constances";
 
 export const updateProductsTitle = (title) => {
     return {
