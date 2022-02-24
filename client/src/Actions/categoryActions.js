@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const fetchCategory = () => {
     return dispatch => {
-        axios.get('http://localhost:8000/getListCategories').then(response => {
+        axios.get('/getListCategories').then(response => {
             return response.data.listCategories
         }).then(list => {
             dispatch({

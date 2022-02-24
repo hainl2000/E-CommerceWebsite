@@ -3,7 +3,7 @@ import axios from "axios"
 
 export const fetchProducts = () => {
     return dispatch => {
-        axios.get('http://localhost:8000/getAllActiveProducts').then(response => {
+        axios.get('/getAllActiveProducts').then(response => {
             return response.data.listActiveProducts
         }).then(list => {
             dispatch({
@@ -16,7 +16,7 @@ export const fetchProducts = () => {
 
 export const fetchProductsByCategory = (id) => {
     return dispatch => {
-        axios.post('http://localhost:8000/getListProductsByCategory', { category: id }).then(response => {
+        axios.post('/getListProductsByCategory', { category: id }).then(response => {
             return response.data.listProducts
         }).then(list => {
             dispatch({
