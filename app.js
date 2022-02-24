@@ -11,7 +11,7 @@ var app = express();
 
 var http = require('http')
 const PORT = process.env.PORT || 8000
-const server = app.listen(PORT, () => console.log(`Running on port 8000`))
+const server = app.listen(PORT, () => console.log(`Running on port ${PORT}`))
 var socket = require('socket.io');
 
 const io = socket(server)
@@ -44,19 +44,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.json())
-app.use(express.static(path.join(__dirname + '/client/build')))
 
 // app.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'build', 'index.html'));
-// });
-
-//CORS
+    //     res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    // });
+    
+    //CORS
 const corsConfig = {
     credentials: true,
     origin: true,
 };
 app.use(cors(corsConfig));
 
+app.use(express.static(path.join(__dirname + '/client/build')))
+    
 app.get('/', (request, response) => {
     response.sendFile(path.join(__dirname + '/client/build/index.html'))
 })
