@@ -33,6 +33,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../../Actions/userActions';
 import { fetchRooms } from "../../Actions/adminActions";
 import { getLoginStatus, signout } from '../../Actions/userActions'
+import CategoryList from "./CategoryList";
 
 const Admin = () => {
     const classes = useStyles()
@@ -73,10 +74,6 @@ const Admin = () => {
         dispatch(signout())
     }
 
-    useEffect(() => {
-        console.log(value)
-    }, [value])
-
     const getPanel = () => {
         switch (value)
         {
@@ -84,6 +81,9 @@ const Admin = () => {
                 return <ProductList setOpenModal={setOpenModal} setModalType={setModalType} />
 
             case 1:
+                return <CategoryList setOpenModal={setOpenModal} setModalType={setModalType} />
+
+            case 2:
                 return <Inbox/>
             
             default: return null
