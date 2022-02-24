@@ -48,6 +48,7 @@ const EditModal = () => {
 
     const submitHandle = () => {
         updateProduct({
+            id: data._id,
             nameProduct: name,
             imageURL: imageList[0]?.url,
             quantity: quantity,
@@ -105,7 +106,7 @@ const EditModal = () => {
                             variant="outlined"
                             size="small"
                             value={price}
-                            onChange={e => setPrice(e.target.price)}
+                            onChange={e => setPrice(e.target.value)}
                         />
                     </FormControl>
                     <FormControl variant="outlined" size="small">
