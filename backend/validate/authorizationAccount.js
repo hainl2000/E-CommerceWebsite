@@ -3,18 +3,18 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require('cookie-parser');
 
 const authorizeAdmin = (req,res,next) =>{
-    const tokenUserId = req.cookies.userId;
-    // console.log(req.cookies);
-    if(!tokenUserId){
-        console.log("Stop o day ");
-        return res.status(403).send({
-            message: "Not login"
-        })
-    }
     try{
+        const tokenUserId = req.cookies.userId;
+        // console.log('id ' ,req.cookies.userId);
+        if(!tokenUserId){
+            console.log("Stop o day ");
+            return res.status(403).send({
+                message: "Not login"
+            })
+        }
         const userId  = jwt.verify(tokenUserId,process.env.JWT_KEY);
-        AccountMode.findOne({
-            _id : userId
+        AccountModel.findOne({
+            _id : userId.userId
         }).then(data =>{
             if(data.role == 0){
                 console.log("Login = admin account");
@@ -23,14 +23,14 @@ const authorizeAdmin = (req,res,next) =>{
             }
             else{
                 // console.log("Stop o day 1");
-                res.status(403).send({
+                return res.status(403).send({
                     message: "Not login = admin account"
                 })
             }
         })
     }catch {
-        console.log(err);
-        return res.sendStatus(500).json({
+        console.log("1111111111111");
+        return res.status(500).json({
             message: "Error mtfk"
         });
     }
