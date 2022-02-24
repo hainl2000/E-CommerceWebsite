@@ -95,7 +95,7 @@ const AddModal = () => {
                             variant="outlined"
                             size="small"
                             value={price}
-                            onChange={e => setPrice(e.target.price)}
+                            onChange={e => setPrice(e.target.value)}
                         />
                     </FormControl>
                     <FormControl variant="outlined" size="small">
