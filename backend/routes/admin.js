@@ -13,7 +13,7 @@ router.use(express.json());
 
 router.post('/product/create',productController.createProduct);
 router.post('/product/update',productController.updateProduct);
-router.get('/product/delete',productController.deleteProduct);
+router.post('/product/delete',productController.deleteProduct);
 router.post('/category/create',categoryController.createCategory);
 
 

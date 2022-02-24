@@ -103,10 +103,10 @@ const updateProduct = (req,res,next) =>{
 };
 
 const deleteProduct = (req,res,next) =>{
-    // let productId = req.body.id;
+    // let productId = req.body.productId;
     // console.log("Product's id will be deleted is "+productId);
-    console.log('aaaaaaaaaaa');
-    console.log('body' , req.body);
+    console.log('aaaaaaaaabb');
+    // console.log('body' , req.body);
     ProductModel.findOneAndUpdate({_id : req.body.productId},
     {
         $set:{

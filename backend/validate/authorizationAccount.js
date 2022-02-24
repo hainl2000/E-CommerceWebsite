@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 
 const authorizeAdmin = (req,res,next) =>{
     try{
+        // console.log(req.body);
         const tokenUserId = req.cookies.userId;
         // console.log('id ' ,req.cookies.userId);
         if(!tokenUserId){
@@ -22,14 +23,12 @@ const authorizeAdmin = (req,res,next) =>{
                 return next();
             }
             else{
-                // console.log("Stop o day 1");
                 return res.status(403).send({
                     message: "Not login = admin account"
                 })
             }
         })
     }catch {
-        console.log("1111111111111");
         return res.status(500).json({
             message: "Error mtfk"
         });
