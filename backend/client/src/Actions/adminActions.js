@@ -52,7 +52,7 @@ export const updateProduct = (product) => {
 }
 
 export const removeProduct = (productId) => {
-    axios.post('/admin/product/delete', productId, { withCredentials: true })
+    axios.post('/admin/product/delete', {productId: productId}, { withCredentials: true })
     .then(response => console.log(response))
 }
 
