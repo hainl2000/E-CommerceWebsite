@@ -18,13 +18,13 @@ const getAllActiveProducts = (req,res,next) =>{
 };
 
 const createProduct = (req,res,next) =>{
+    // console.log(req.body);
     var nameProduct = req.body.nameProduct;
     var imageURL = req.body.imageURL;
     var quantity = req.body.quantity;
     var price = req.body.price;
     var description = req.body.description;
     var category = req.body.category
-
     ProductModel.findOne({
         nameProduct : nameProduct 
     }).then(data=>{
@@ -59,6 +59,7 @@ const createProduct = (req,res,next) =>{
 }
 
 const updateProduct = (req,res,next) =>{
+    console.log(req.body);
     var nameProduct = req.body.nameProduct;
     var imageURL = req.body.imageURL;
     var quantity = req.body.quantity;
@@ -66,7 +67,7 @@ const updateProduct = (req,res,next) =>{
     var description = req.body.description;
     var category = req.body.category;
     try{
-        ProductModel.findOneAndUpdate({_id : req.body.productId},
+        ProductModel.findOneAndUpdate({_id : req.body.id},
             {   $set:{
                     nameProduct : nameProduct,
                     imageURL : imageURL,
@@ -79,13 +80,14 @@ const updateProduct = (req,res,next) =>{
                 if (err) 
                    return res.status(500).send(err);
                 else{
+                    console.log('data' , data);
                     if(data){
                         return res.status(200).send({
                             message : "Update product succesfully"
                         });
                     }
                     else{
-                        return res.stutus(406).send({
+                        return res.status(406).send({
                             message : "Not existed product | Error happens while updating"
                         })
                     }
@@ -94,12 +96,17 @@ const updateProduct = (req,res,next) =>{
             })
     }catch(e){
         console.log(e);
+        return res.status(500).json({
+            message: "Error",
+        });
     }
 };
 
 const deleteProduct = (req,res,next) =>{
     // let productId = req.body.id;
     // console.log("Product's id will be deleted is "+productId);
+    console.log('aaaaaaaaaaa');
+    console.log('body' , req.body);
     ProductModel.findOneAndUpdate({_id : req.body.productId},
     {
         $set:{

@@ -42,6 +42,7 @@ export const sentMessage = (text, roomId) => {
 }
 
 export const createProduct = (product) => {
+    console.log(product);
     axios.post('/admin/product/create', product, { withCredentials: true })
     .then(response => console.log(response))
 }
