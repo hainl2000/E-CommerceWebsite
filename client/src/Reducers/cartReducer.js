@@ -55,6 +55,18 @@ export const cartReducer = (state = initialState, action) => {
                 products: state.products.filter(product => product._id !== action.product._id)
             }
 
+        case ACTIONS.FETCH_CART_ITEM:
+            return {
+                ...state,
+                products: action.products
+            }
+
+        case ACTIONS.CART_CHECKOUT:
+            return {
+                ...state,
+                products: []
+            }
+
         default: return state
     }
 }

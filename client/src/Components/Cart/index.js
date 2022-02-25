@@ -14,7 +14,7 @@ import {
     Button,
 } from '@material-ui/core'
 import { columns } from './columns';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { shipping } from './data';
 import { useStyles } from './style';
 import CartItem from './CartItem';
@@ -81,7 +81,7 @@ const Cart = () => {
                         Số sản phẩm: {products.length}
                     </Typography>
                     <Typography>
-                        Tổng tiền: {Intl.NumberFormat().format(getTotal())} VND
+                        Tổng tiền: {Intl.NumberFormat().format(getTotal())} $
                     </Typography>
                 </Box>
                 <Typography variant='h6'>Vận chuyển</Typography>
@@ -98,13 +98,13 @@ const Cart = () => {
                         </Select>
                     </FormControl>
                     <Typography>
-                        Phí vận chuyển: {Intl.NumberFormat().format(shipping[shippingValue - 1].price)} VND
+                        Phí vận chuyển: {Intl.NumberFormat().format(shipping[shippingValue - 1].price)} $
                     </Typography>
                 </Box>
                 <Divider/>
                 <Box className={classes.total}>
                     <Typography>Tổng tiền:</Typography>
-                    <Typography>{products.length !== 0 ? Intl.NumberFormat().format(getTotal() + shipping[shippingValue -1].price) : 0} VND</Typography>
+                    <Typography>{products.length !== 0 ? Intl.NumberFormat().format(getTotal() + shipping[shippingValue -1].price) : 0} $</Typography>
                 </Box>
                 <Box className={classes.payButton}>
                     <Button variant='contained' color='secondary'>Thanh toán</Button>
