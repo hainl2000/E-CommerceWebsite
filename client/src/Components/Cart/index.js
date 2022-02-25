@@ -18,10 +18,12 @@ import { useEffect, useState } from 'react';
 import { shipping } from './data';
 import { useStyles } from './style';
 import CartItem from './CartItem';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { productsCartSelector } from '../../Selectors/cartSelector';
+import { cartCheckout } from '../../Actions/cartActions';
 
 const Cart = () => {
+    const dispatch = useDispatch()
     const classes = useStyles()
     const [shippingValue, setShippingValue] = useState(1)
     const products = useSelector(productsCartSelector)
@@ -30,6 +32,10 @@ const Cart = () => {
         return products.reduce((current, next) => {
             return current + next.price * next.quantity
         }, 0)
+    }
+
+    const checkoutHandle = () => {
+        dispatch(cartCheckout())
     }
 
     return (
@@ -107,7 +113,7 @@ const Cart = () => {
                     <Typography>{products.length !== 0 ? Intl.NumberFormat().format(getTotal() + shipping[shippingValue -1].price) : 0} $</Typography>
                 </Box>
                 <Box className={classes.payButton}>
-                    <Button variant='contained' color='secondary'>Thanh toán</Button>
+                    <Button variant='contained' color='secondary' onClick={checkoutHandle}>Thanh toán</Button>
                 </Box>
             </Box>
         </Box>

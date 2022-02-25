@@ -58,7 +58,7 @@ export const cartReducer = (state = initialState, action) => {
         case ACTIONS.FETCH_CART_ITEM:
             return {
                 ...state,
-                products: action.products
+                products: action.products.map(product => ({...product.ProductInfor[0], quantity: product.Quantity}))
             }
 
         case ACTIONS.CART_CHECKOUT:

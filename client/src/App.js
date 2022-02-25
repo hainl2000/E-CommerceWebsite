@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { fetchCategory } from './Actions/categoryActions'
 import { fetchProducts } from './Actions/productActions'
 import { getLoginStatus } from './Actions/userActions';
+import { fetchCartItem } from './Actions/cartActions';
 
 function App() {
     const dispatch = useDispatch()
@@ -14,6 +15,7 @@ function App() {
         dispatch(fetchCategory())
         dispatch(fetchProducts())
         dispatch(getLoginStatus())
+        dispatch(fetchCartItem())
     }, [])
 
     return (
