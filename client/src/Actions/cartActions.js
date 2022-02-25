@@ -4,7 +4,7 @@ import { constance as ACTIONS } from "../constance"
 
 export const addIntoCart = (product) => {
     return dispatch => {
-        axios.post('/user/cart/add', { productId: product._id }, { withCredentials: true })
+        axios.post('/user/cart/add', { productId: product._id, quantity: 1 }, { withCredentials: true })
         .then(response => {
             console.log(response.data)
             dispatch(fetchCartItem())
